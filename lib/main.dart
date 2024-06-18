@@ -5,7 +5,9 @@ import 'AR_VR/ARScreen.dart';
 import 'AR_VR/ArSecreen2.dart';
 import 'AppSettings/App_Setting.dart';
 import 'Chart_Analytics/Chart_Analytics.dart';
+import 'ListView/ListView.dart';
 import 'PaymentsTools/phonePay.dart';
+import 'WebSocket/web_main.dart';
 import 'WebSocket/websocket_chat.dart';
 
 void main() => runApp(ChatApp());
@@ -67,6 +69,11 @@ class MyHomePage extends StatelessWidget {
       "icon": Icons.add_chart,
       "title": "Chart Analytics",
     },
+    {
+      "id": 7,
+      "icon": Icons.format_list_bulleted,
+      "title": "Lazy Load ListView",
+    },
   ];
 
   @override
@@ -89,7 +96,7 @@ class MyHomePage extends StatelessWidget {
               } else if (data[index]['id'] == 2) {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => WebSocketChatScreen()),
+                  MaterialPageRoute(builder: (context) => WebChatMain()),
                 );
               } else if (data[index]['id'] == 3) {
                 Navigator.push(
@@ -111,6 +118,11 @@ class MyHomePage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => ChartsPage()),
+                );
+              }else if (data[index]['id'] == 7) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LazyLoadListView()),
                 );
               }
 
