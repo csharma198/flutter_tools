@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class LazyLoadListView extends StatefulWidget {
+  const LazyLoadListView({super.key});
+
   @override
   _LazyLoadListViewState createState() => _LazyLoadListViewState();
 }
@@ -11,7 +13,7 @@ class _LazyLoadListViewState extends State<LazyLoadListView> {
   // Initialize variables
   List<dynamic> comments = [];
   int currentPage = 1;
-  ScrollController _scrollController = ScrollController();
+  final ScrollController _scrollController = ScrollController();
   bool isRefreshing = false;
 
   @override
@@ -60,7 +62,7 @@ class _LazyLoadListViewState extends State<LazyLoadListView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Lazy Load ListView with Refresh'),
+        title: const Text('Lazy Load ListView with Refresh'),
       ),
       body: RefreshIndicator(
         onRefresh: onRefresh,
@@ -69,7 +71,7 @@ class _LazyLoadListViewState extends State<LazyLoadListView> {
           itemCount: comments.length + 1, // Add 1 for the loading indicator
           itemBuilder: (context, index) {
             if (index == comments.length) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             }

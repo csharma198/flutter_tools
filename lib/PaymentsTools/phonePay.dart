@@ -6,18 +6,20 @@ import 'widgets/NotificationsScreen.dart';
 import 'widgets/ToContactScreen.dart';
 
 class BankingInterface extends StatelessWidget {
+  const BankingInterface({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Banking App'),
+        title: const Text('Banking App'),
         actions: [
           IconButton(
-            icon: Icon(Icons.notifications),
+            icon: const Icon(Icons.notifications),
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => NotificationsScreen()),
+                MaterialPageRoute(builder: (context) =>  NotificationsScreen()),
               );
             },
           ),
@@ -33,45 +35,45 @@ class BankingInterface extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      CircleAvatar(
+                      const CircleAvatar(
                         backgroundImage:
                             NetworkImage('https://placehold.co/50'),
                       ),
-                      Text('Username'),
+                      const Text('Username'),
                       IconButton(
-                        icon: Icon(Icons.settings),
+                        icon: const Icon(Icons.settings),
                         onPressed: () {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => SettingsScreen()),
+                                builder: (context) => const SettingsScreen()),
                           );
                         },
                       ),
                     ],
                   ),
-                  SizedBox(height: 20),
-                  Text('Money Transfers',
+                  const SizedBox(height: 20),
+                  const Text('Money Transfers',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       _buildTransferOption(context, Icons.person, 'To Contact',
-                          ToContactScreen()),
+                           ToContactScreen()),
                       _buildTransferOption(context, Icons.account_balance,
-                          'To Account', ToAccountScreen()),
+                          'To Account', const ToAccountScreen()),
                       _buildTransferOption(context, Icons.person_outline,
-                          'To Self', ToSelfScreen()),
+                          'To Self', const ToSelfScreen()),
                       _buildTransferOption(
                           context,
                           Icons.account_balance_wallet,
                           'Bank Balance',
-                          BankBalanceScreen()),
+                          const BankBalanceScreen()),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -81,51 +83,51 @@ class BankingInterface extends StatelessWidget {
                       _buildContactAvatar('Pradeep'),
                     ],
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       _buildFeatureCard(context, Icons.local_offer,
-                          'View All OFFERS', OffersScreen()),
+                          'View All OFFERS', const OffersScreen()),
                       _buildFeatureCard(context, Icons.card_giftcard,
-                          'View My REWARDS', RewardsScreen()),
+                          'View My REWARDS', const RewardsScreen()),
                       _buildFeatureCard(context, Icons.money,
-                          'Refer & Earn Min. ₹100', ReferEarnScreen()),
+                          'Refer & Earn Min. ₹100', const ReferEarnScreen()),
                     ],
                   ),
-                  SizedBox(height: 20),
-                  Text('Recharge & Pay Bills',
+                  const SizedBox(height: 20),
+                  const Text('Recharge & Pay Bills',
                       style:
                           TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   GridView.count(
                     crossAxisCount: 4,
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     children: [
                       _buildServiceIcon(context, Icons.phone_android,
-                          'Recharge', RechargeScreen()),
-                      _buildServiceIcon(context, Icons.tv, 'DTH', DTHScreen()),
+                          'Recharge', const RechargeScreen()),
+                      _buildServiceIcon(context, Icons.tv, 'DTH', const DTHScreen()),
                       _buildServiceIcon(context, Icons.electrical_services,
-                          'Electricity', ElectricityScreen()),
+                          'Electricity', const ElectricityScreen()),
                       _buildServiceIcon(context, Icons.credit_card,
-                          'Credit Card', CreditCardScreen()),
+                          'Credit Card', const CreditCardScreen()),
                       _buildServiceIcon(
-                          context, Icons.phone, 'Postpaid', PostpaidScreen()),
+                          context, Icons.phone, 'Postpaid', const PostpaidScreen()),
                       _buildServiceIcon(context, Icons.phone_in_talk,
-                          'Landline', LandlineScreen()),
+                          'Landline', const LandlineScreen()),
                       _buildServiceIcon(
-                          context, Icons.wifi, 'Broadband', BroadbandScreen()),
+                          context, Icons.wifi, 'Broadband', const BroadbandScreen()),
                       _buildServiceIcon(
-                          context, Icons.local_gas_station, 'Gas', GasScreen()),
+                          context, Icons.local_gas_station, 'Gas', const GasScreen()),
                       _buildServiceIcon(
-                          context, Icons.water, 'Water', WaterScreen()),
+                          context, Icons.water, 'Water', const WaterScreen()),
                       _buildServiceIcon(context, Icons.directions_car,
-                          'Datacard', DatacardScreen()),
+                          'Datacard', const DatacardScreen()),
                       _buildServiceIcon(
-                          context, Icons.home, 'Insurance', InsuranceScreen()),
+                          context, Icons.home, 'Insurance', const InsuranceScreen()),
                       _buildServiceIcon(context, Icons.account_balance,
-                          'Municipal Tax', MunicipalTaxScreen()),
+                          'Municipal Tax', const MunicipalTaxScreen()),
                     ],
                   ),
                 ],
@@ -135,7 +137,7 @@ class BankingInterface extends StatelessWidget {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: [
+        items: const [
           BottomNavigationBarItem(
               icon: Icon(
                 Icons.home,
@@ -169,7 +171,7 @@ class BankingInterface extends StatelessWidget {
             backgroundColor: Colors.purple,
             child: Icon(icon, color: Colors.white),
           ),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Text(label),
         ],
       ),
@@ -179,10 +181,10 @@ class BankingInterface extends StatelessWidget {
   Widget _buildContactAvatar(String name) {
     return Column(
       children: [
-        CircleAvatar(
+        const CircleAvatar(
           backgroundImage: NetworkImage('https://placehold.co/50'),
         ),
-        SizedBox(height: 5),
+        const SizedBox(height: 5),
         Text(name),
       ],
     );
@@ -197,7 +199,7 @@ class BankingInterface extends StatelessWidget {
           MaterialPageRoute(builder: (context) => screen),
         );
       },
-      child: Container(
+      child: SizedBox(
         width: 100,
         height: 100,
         child: Card(
@@ -207,10 +209,10 @@ class BankingInterface extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(icon, color: Colors.white),
-                SizedBox(height: 5),
+                const SizedBox(height: 5),
                 Text(label,
                     textAlign: TextAlign.center,
-                    style: TextStyle(color: Colors.white)),
+                    style: const TextStyle(color: Colors.white)),
               ],
             ),
           ),
@@ -232,7 +234,7 @@ class BankingInterface extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(icon, color: Colors.purple),
-          SizedBox(height: 5),
+          const SizedBox(height: 5),
           Text(label, textAlign: TextAlign.center),
         ],
       ),
@@ -243,171 +245,205 @@ class BankingInterface extends StatelessWidget {
 // Placeholder Screens for Navigation
 
 class SettingsScreen extends StatelessWidget {
+  const SettingsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Settings')),
-      body: Center(child: Text('Settings Screen')),
+      appBar: AppBar(title: const Text('Settings')),
+      body: const Center(child: Text('Settings Screen')),
     );
   }
 }
 
 class ToSelfScreen extends StatelessWidget {
+  const ToSelfScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('To Self')),
-      body: Center(child: Text('To Self Screen')),
+      appBar: AppBar(title: const Text('To Self')),
+      body: const Center(child: Text('To Self Screen')),
     );
   }
 }
 
 class OffersScreen extends StatelessWidget {
+  const OffersScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('View All OFFERS')),
-      body: Center(child: Text('Offers Screen')),
+      appBar: AppBar(title: const Text('View All OFFERS')),
+      body: const Center(child: Text('Offers Screen')),
     );
   }
 }
 
 class RewardsScreen extends StatelessWidget {
+  const RewardsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('View My REWARDS')),
-      body: Center(child: Text('Rewards Screen')),
+      appBar: AppBar(title: const Text('View My REWARDS')),
+      body: const Center(child: Text('Rewards Screen')),
     );
   }
 }
 
 class ReferEarnScreen extends StatelessWidget {
+  const ReferEarnScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Refer & Earn')),
-      body: Center(child: Text('Refer & Earn Screen')),
+      appBar: AppBar(title: const Text('Refer & Earn')),
+      body: const Center(child: Text('Refer & Earn Screen')),
     );
   }
 }
 
 class RechargeScreen extends StatelessWidget {
+  const RechargeScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Recharge')),
-      body: Center(child: Text('Recharge Screen')),
+      appBar: AppBar(title: const Text('Recharge')),
+      body: const Center(child: Text('Recharge Screen')),
     );
   }
 }
 
 class DTHScreen extends StatelessWidget {
+  const DTHScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('DTH')),
-      body: Center(child: Text('DTH Screen')),
+      appBar: AppBar(title: const Text('DTH')),
+      body: const Center(child: Text('DTH Screen')),
     );
   }
 }
 
 class ElectricityScreen extends StatelessWidget {
+  const ElectricityScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Electricity')),
-      body: Center(child: Text('Electricity Screen')),
+      appBar: AppBar(title: const Text('Electricity')),
+      body: const Center(child: Text('Electricity Screen')),
     );
   }
 }
 
 class CreditCardScreen extends StatelessWidget {
+  const CreditCardScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Credit Card')),
-      body: Center(child: Text('Credit Card Screen')),
+      appBar: AppBar(title: const Text('Credit Card')),
+      body: const Center(child: Text('Credit Card Screen')),
     );
   }
 }
 
 class PostpaidScreen extends StatelessWidget {
+  const PostpaidScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Postpaid')),
-      body: Center(child: Text('Postpaid Screen')),
+      appBar: AppBar(title: const Text('Postpaid')),
+      body: const Center(child: Text('Postpaid Screen')),
     );
   }
 }
 
 class LandlineScreen extends StatelessWidget {
+  const LandlineScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Landline')),
-      body: Center(child: Text('Landline Screen')),
+      appBar: AppBar(title: const Text('Landline')),
+      body: const Center(child: Text('Landline Screen')),
     );
   }
 }
 
 class BroadbandScreen extends StatelessWidget {
+  const BroadbandScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Broadband')),
-      body: Center(child: Text('Broadband Screen')),
+      appBar: AppBar(title: const Text('Broadband')),
+      body: const Center(child: Text('Broadband Screen')),
     );
   }
 }
 
 class GasScreen extends StatelessWidget {
+  const GasScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Gas')),
-      body: Center(child: Text('Gas Screen')),
+      appBar: AppBar(title: const Text('Gas')),
+      body: const Center(child: Text('Gas Screen')),
     );
   }
 }
 
 class WaterScreen extends StatelessWidget {
+  const WaterScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Water')),
-      body: Center(child: Text('Water Screen')),
+      appBar: AppBar(title: const Text('Water')),
+      body: const Center(child: Text('Water Screen')),
     );
   }
 }
 
 class DatacardScreen extends StatelessWidget {
+  const DatacardScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Datacard')),
-      body: Center(child: Text('Datacard Screen')),
+      appBar: AppBar(title: const Text('Datacard')),
+      body: const Center(child: Text('Datacard Screen')),
     );
   }
 }
 
 class InsuranceScreen extends StatelessWidget {
+  const InsuranceScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Insurance')),
-      body: Center(child: Text('Insurance Screen')),
+      appBar: AppBar(title: const Text('Insurance')),
+      body: const Center(child: Text('Insurance Screen')),
     );
   }
 }
 
 class MunicipalTaxScreen extends StatelessWidget {
+  const MunicipalTaxScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Municipal Tax')),
-      body: Center(child: Text('Municipal Tax Screen')),
+      appBar: AppBar(title: const Text('Municipal Tax')),
+      body: const Center(child: Text('Municipal Tax Screen')),
     );
   }
 }

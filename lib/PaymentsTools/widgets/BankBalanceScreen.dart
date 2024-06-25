@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 
 
 class BankBalanceScreen extends StatefulWidget {
+  const BankBalanceScreen({super.key});
+
   @override
   _BankBalanceScreenState createState() => _BankBalanceScreenState();
 }
 
 class _BankBalanceScreenState extends State<BankBalanceScreen> {
-  List<Map<String, dynamic>> _bankAccounts = [
+  final List<Map<String, dynamic>> _bankAccounts = [
     {
       'bankName': 'XYZ Bank',
       'accountNumber': 'XXXX-XXXX-1234',
@@ -30,16 +32,16 @@ class _BankBalanceScreenState extends State<BankBalanceScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Bank Balance')),
+      appBar: AppBar(title: const Text('Bank Balance')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            Text(
+            const Text(
               'Linked Bank Accounts',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             if (!_showBalance)
               Expanded(
                 // Ensure ListView is expanded to avoid overflow
@@ -61,16 +63,16 @@ class _BankBalanceScreenState extends State<BankBalanceScreen> {
                 ),
               ),
             if (_showBalance) ...[
-              SizedBox(height: 20),
-              Text(
+              const SizedBox(height: 20),
+              const Text(
                 'Account Balance',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               ListView.builder(
                 shrinkWrap: true,
                 itemCount: 1, // Only show balance for one account
-                physics: NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   final account = _bankAccounts[index];
                   return Card(
@@ -80,12 +82,12 @@ class _BankBalanceScreenState extends State<BankBalanceScreen> {
                   );
                 },
               ),
-              SizedBox(height: 20),
-              Text(
+              const SizedBox(height: 20),
+              const Text(
                 'Transaction History',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Expanded(
                 child: ListView.builder(
                   shrinkWrap: true,
@@ -119,7 +121,7 @@ class _BankBalanceScreenState extends State<BankBalanceScreen> {
             // This allows updating the state within the dialog
             builder: (context, setState) {
           return AlertDialog(
-            title: Text('Enter PIN'),
+            title: const Text('Enter PIN'),
             content: TextField(
               onChanged: (value) {
                 setState(() {
@@ -129,7 +131,7 @@ class _BankBalanceScreenState extends State<BankBalanceScreen> {
               keyboardType: TextInputType.number,
               maxLength: 6,
               obscureText: true,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Enter your 6-digit PIN',
                 counterText: '',
               ),
@@ -139,12 +141,12 @@ class _BankBalanceScreenState extends State<BankBalanceScreen> {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text('Cancel'),
+                child: const Text('Cancel'),
               ),
               ElevatedButton(
                 onPressed:
                     _pin.length == 6 ? () => _checkBalance(context) : null,
-                child: Text('Confirm'),
+                child: const Text('Confirm'),
               ),
             ],
           );
@@ -160,7 +162,7 @@ class _BankBalanceScreenState extends State<BankBalanceScreen> {
       });
       Navigator.of(context).pop(); // Close PIN dialog
     } else {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Invalid PIN. Please try again.'),
         backgroundColor: Colors.red,
       ));
@@ -171,12 +173,12 @@ class _BankBalanceScreenState extends State<BankBalanceScreen> {
 class AccountBalanceDashboard extends StatelessWidget {
   final List<Map<String, dynamic>> accounts;
 
-  AccountBalanceDashboard({required this.accounts});
+  const AccountBalanceDashboard({super.key, required this.accounts});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Account Balance Dashboard')),
+      appBar: AppBar(title: const Text('Account Balance Dashboard')),
       body: ListView.builder(
         itemCount: accounts.length,
         itemBuilder: (context, index) {
@@ -191,7 +193,7 @@ class AccountBalanceDashboard extends StatelessWidget {
         },
       ),
       bottomNavigationBar: BottomNavigationBar(
-        items: [
+        items: const [
           BottomNavigationBarItem(
               icon: Icon(Icons.account_balance), label: 'Balance'),
           BottomNavigationBarItem(

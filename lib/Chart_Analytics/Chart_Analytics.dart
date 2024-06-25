@@ -5,6 +5,8 @@ import 'package:candlesticks/candlesticks.dart';
 import 'package:http/http.dart' as http;
 
 class ChartsPage extends StatefulWidget {
+  const ChartsPage({super.key});
+
   @override
   _ChartsPageState createState() => _ChartsPageState();
 }
@@ -15,7 +17,7 @@ class _ChartsPageState extends State<ChartsPage> {
 
 
   void _loadChartData() {
-    final String data = '''
+    const String data = '''
     {
       "lineChart": {
         "points": [
@@ -110,10 +112,10 @@ class _ChartsPageState extends State<ChartsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Charts Page'),
+        title: const Text('Charts Page'),
       ),
       body: _chartData == null
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
         child: Column(
           children: [
@@ -136,7 +138,7 @@ class _ChartsPageState extends State<ChartsPage> {
 
     return Container(
       height: 200,
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: LineChart(
         LineChartData(
           lineBarsData: [
@@ -168,7 +170,7 @@ class _ChartsPageState extends State<ChartsPage> {
 
     return Container(
       height: 200,
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: BarChart(
         BarChartData(
           barGroups: barGroups,
@@ -188,7 +190,7 @@ class _ChartsPageState extends State<ChartsPage> {
 
     return Container(
       height: 200,
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: PieChart(
         PieChartData(
           sections: sections,
@@ -204,7 +206,7 @@ class _ChartsPageState extends State<ChartsPage> {
 
     return Container(
       height: 200,
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: ScatterChart(
         ScatterChartData(
           scatterSpots: spots,
@@ -236,13 +238,13 @@ class _ChartsPageState extends State<ChartsPage> {
 
     return Container(
       height: 200,
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: RadarChart(
         RadarChartData(
           dataSets: dataSets,
-          radarBorderData: BorderSide(color: Colors.transparent),
+          radarBorderData: const BorderSide(color: Colors.transparent),
           titlePositionPercentageOffset: 0.2,
-          titleTextStyle: TextStyle(color: Colors.black, fontSize: 14),
+          titleTextStyle: const TextStyle(color: Colors.black, fontSize: 14),
           getTitle: (index) => titles[index],
         ),
       ),
@@ -252,7 +254,7 @@ class _ChartsPageState extends State<ChartsPage> {
   Widget _buildTradingChart() {
     return Container(
       height: 300,
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: Center(
         child: Candlesticks(
           candles: candles,

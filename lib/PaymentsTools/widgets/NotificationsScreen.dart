@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class NotificationsScreen extends StatelessWidget {
@@ -23,16 +22,18 @@ class NotificationsScreen extends StatelessWidget {
     },
   ];
 
+   NotificationsScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Notifications')),
+      appBar: AppBar(title: const Text('Notifications')),
       body: ListView.builder(
         itemCount: transactions.length,
         itemBuilder: (context, index) {
           final transaction = transactions[index];
           return Card(
-            margin: EdgeInsets.all(8.0),
+            margin: const EdgeInsets.all(8.0),
             child: ListTile(
               leading: Icon(
                 transaction['status'] == 'Completed'

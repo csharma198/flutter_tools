@@ -41,9 +41,9 @@ class _Background1State extends State<Background1> {
         SafeArea(
           child: RefreshIndicator(
             onRefresh: _refreshData,
-            child: SingleChildScrollView(
+            child: const SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.all(1.0),
+                padding: EdgeInsets.all(1.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [

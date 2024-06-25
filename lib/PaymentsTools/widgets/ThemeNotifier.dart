@@ -12,7 +12,7 @@ class ThemeNotifier with ChangeNotifier {
 }
 
 class LanguageNotifier with ChangeNotifier {
-  Locale _locale = Locale('en');
+  Locale _locale = const Locale('en');
 
   Locale get locale => _locale;
 

@@ -9,10 +9,12 @@ class ToContactScreen extends StatelessWidget {
     {'name': 'Pradeep', 'image': 'https://placehold.co/50'},
   ];
 
+   ToContactScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('To Contact')),
+      appBar: AppBar(title: const Text('To Contact')),
       body: ListView.builder(
         itemCount: contacts.length,
         itemBuilder: (context, index) {
@@ -40,14 +42,14 @@ class ToContactScreen extends StatelessWidget {
 class ContactDetailScreen extends StatefulWidget {
   final Map<String, String> contact;
 
-  ContactDetailScreen({required this.contact});
+  const ContactDetailScreen({super.key, required this.contact});
 
   @override
   _ContactDetailScreenState createState() => _ContactDetailScreenState();
 }
 
 class _ContactDetailScreenState extends State<ContactDetailScreen> {
-  TextEditingController _amountController = TextEditingController();
+  final TextEditingController _amountController = TextEditingController();
   List<String> _transactions = [];
   final ValueNotifier<bool> _isAmountEntered = ValueNotifier<bool>(false);
 
@@ -88,7 +90,7 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
       String transaction = 'Sent ₹${_amountController.text} to ${widget.contact['name']}';
       _storeTransaction(transaction);
       _amountController.clear();
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text('Money transferred successfully'),
       ));
       setState(() {});
@@ -110,12 +112,12 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
         children: [
           Expanded(
             child: ListView.builder(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               itemCount: _transactions.length,
               itemBuilder: (context, index) {
                 return Container(
-                  margin: EdgeInsets.symmetric(vertical: 8.0),
-                  padding: EdgeInsets.all(16.0),
+                  margin: const EdgeInsets.symmetric(vertical: 8.0),
+                  padding: const EdgeInsets.all(16.0),
                   decoration: BoxDecoration(
                     color: index % 2 == 0 ? Colors.grey[300] : Colors.purple[100],
                     borderRadius: BorderRadius.circular(12.0),
@@ -132,27 +134,27 @@ class _ContactDetailScreenState extends State<ContactDetailScreen> {
                 Expanded(
                   child: TextField(
                     controller: _amountController,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Enter amount',
                       border: OutlineInputBorder(),
                     ),
                     keyboardType: TextInputType.number,
                   ),
                 ),
-                SizedBox(width: 8.0),
+                const SizedBox(width: 8.0),
                 ValueListenableBuilder<bool>(
                   valueListenable: _isAmountEntered,
                   builder: (context, isAmountEntered, child) {
                     return AnimatedOpacity(
                       opacity: isAmountEntered ? 1.0 : 0.0,
-                      duration: Duration(milliseconds: 300),
+                      duration: const Duration(milliseconds: 300),
                       child: ElevatedButton(
                         onPressed: _sendMoney,
-                        child: Icon(Icons.send, color: Colors.white,),
                         style: ElevatedButton.styleFrom(
-                          shape: CircleBorder(), backgroundColor: Colors.purple,
-                          padding: EdgeInsets.all(14), // Background color
+                          shape: const CircleBorder(), backgroundColor: Colors.purple,
+                          padding: const EdgeInsets.all(14), // Background color
                         ),
+                        child: const Icon(Icons.send, color: Colors.white,),
                       ),
                     );
                   },

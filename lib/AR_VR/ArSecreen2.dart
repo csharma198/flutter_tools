@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:vector_math/vector_math_64.dart' show Vector3;
 
 class ARScreen2 extends StatefulWidget {
+  const ARScreen2({super.key});
+
   @override
   _ARScreen2State createState() => _ARScreen2State();
 }
@@ -17,7 +19,7 @@ class _ARScreen2State extends State<ARScreen2> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('AR Example'),
+        title: const Text('AR Example'),
       ),
       body: ArCoreView(
         onArCoreViewCreated: onArCoreViewCreated,

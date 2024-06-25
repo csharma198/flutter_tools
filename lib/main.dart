@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_tool/Background/Background_main.dart';
-
-import 'AR_VR/ARScreen.dart';
 import 'AR_VR/ArSecreen2.dart';
 import 'AppSettings/App_Setting.dart';
 import 'Chart_Analytics/Chart_Analytics.dart';
 import 'ListView/ListView.dart';
 import 'PaymentsTools/phonePay.dart';
 import 'WebSocket/web_main.dart';
-import 'WebSocket/websocket_chat.dart';
+import 'facial_recognition/facial_recognition.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() => runApp(ChatApp());
+
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp();
+  runApp(const ChatApp());
+}
 
 class ChatApp extends StatelessWidget {
+  const ChatApp({super.key});
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -36,6 +43,7 @@ class ChatApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatelessWidget {
+
   MyHomePage({super.key});
 
   final List<Map<String, dynamic>> data = [
@@ -74,13 +82,18 @@ class MyHomePage extends StatelessWidget {
       "icon": Icons.format_list_bulleted,
       "title": "Lazy Load ListView",
     },
+    {
+      "id": 8,
+      "icon": Icons.format_list_bulleted,
+      "title": "facial recognition",
+    },
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter Tools'),
+        title: const Text('Flutter Tools'),
       ),
       body: ListView.builder(
         padding: const EdgeInsets.all(8.0),
@@ -91,7 +104,7 @@ class MyHomePage extends StatelessWidget {
               if (data[index]['id'] == 1) {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ARScreen2()),
+                  MaterialPageRoute(builder: (context) => const ARScreen2()),
                 );
               } else if (data[index]['id'] == 2) {
                 Navigator.push(
@@ -102,12 +115,12 @@ class MyHomePage extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => BankingInterface()),
+                      builder: (context) => const BankingInterface()),
                 );
               } else if (data[index]['id'] == 4) {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => App_Setting()),
+                  MaterialPageRoute(builder: (context) => const App_Setting()),
                 );
               }else if (data[index]['id'] == 5) {
                 Navigator.push(
@@ -117,12 +130,17 @@ class MyHomePage extends StatelessWidget {
               }else if (data[index]['id'] == 6) {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ChartsPage()),
+                  MaterialPageRoute(builder: (context) => const ChartsPage()),
                 );
               }else if (data[index]['id'] == 7) {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LazyLoadListView()),
+                  MaterialPageRoute(builder: (context) => const LazyLoadListView()),
+                );
+              }else if (data[index]['id'] == 8) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) =>  const facial_recognition()),
                 );
               }
 
@@ -133,9 +151,9 @@ class MyHomePage extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15.0),
               ),
               elevation: 1,
-              margin: EdgeInsets.symmetric(vertical: 10),
+              margin: const EdgeInsets.symmetric(vertical: 10),
               child: Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15.0),
                   gradient: const LinearGradient(
@@ -152,7 +170,7 @@ class MyHomePage extends StatelessWidget {
                       size: 50,
                       color: Colors.white,
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Text(
                       data[index]['title'],
                       style: const TextStyle(

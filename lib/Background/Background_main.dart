@@ -1,5 +1,4 @@
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'Screens/Background1.dart';
@@ -34,7 +33,7 @@ class Background_main extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Background'),
+        title: const Text('Background'),
       ),
       body: ListView.builder(
         padding: const EdgeInsets.all(8.0),
@@ -45,23 +44,23 @@ class Background_main extends StatelessWidget {
               if (data[index]['id'] == 1) {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Background1()),
+                  MaterialPageRoute(builder: (context) => const Background1()),
                 );
               } else if (data[index]['id'] == 2) {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Background1()),
+                  MaterialPageRoute(builder: (context) => const Background1()),
                 );
               } else if (data[index]['id'] == 3) {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => Background1()),
+                      builder: (context) => const Background1()),
                 );
               } else if (data[index]['id'] == 4) {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Background1()),
+                  MaterialPageRoute(builder: (context) => const Background1()),
                 );
               }
 
@@ -72,9 +71,9 @@ class Background_main extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15.0),
               ),
               elevation: 1,
-              margin: EdgeInsets.symmetric(vertical: 10),
+              margin: const EdgeInsets.symmetric(vertical: 10),
               child: Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15.0),
                   gradient: const LinearGradient(
@@ -91,7 +90,7 @@ class Background_main extends StatelessWidget {
                       size: 50,
                       color: Colors.white,
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Text(
                       data[index]['title'],
                       style: const TextStyle(

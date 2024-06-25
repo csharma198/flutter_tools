@@ -1,7 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_tool/WebSocket/websocketThroughLaravelEcho.dart';
 import 'package:flutter_tool/WebSocket/websocket_chat.dart';
-import 'package:flutter_tool/WebSocket/websocket_chat2.dart';
+import 'package:flutter_tool/WebSocket/chatting.dart';
+
+import 'ChatScreen.dart';
 
 class WebChatMain extends StatelessWidget {
   WebChatMain({super.key});
@@ -25,7 +27,7 @@ class WebChatMain extends StatelessWidget {
     {
       "id": 4,
       "icon": Icons.settings,
-      "title": "Background 4",
+      "title": "Laravel echo",
     },
   ];
 
@@ -33,7 +35,8 @@ class WebChatMain extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Background'),
+        title: const Text('Chat Web Socket'),
+
       ),
       body: ListView.builder(
         padding: const EdgeInsets.all(8.0),
@@ -45,12 +48,22 @@ class WebChatMain extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => WebSocketChatScreen()),
+                      builder: (context) => const MyAppChat()),
                 );
               } else if (data[index]['id'] == 2) {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => ChatPage()),
+                  MaterialPageRoute(builder: (context) => const WebSocketChat()),
+                );
+              } else if (data[index]['id'] == 3) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Chatting()),
+                );
+              }else if (data[index]['id'] == 4) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) =>  const websocketThroughLaravelEcho()),
                 );
               }
 
@@ -61,9 +74,9 @@ class WebChatMain extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15.0),
               ),
               elevation: 1,
-              margin: EdgeInsets.symmetric(vertical: 10),
+              margin: const EdgeInsets.symmetric(vertical: 10),
               child: Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15.0),
                   gradient: const LinearGradient(
@@ -80,7 +93,7 @@ class WebChatMain extends StatelessWidget {
                       size: 50,
                       color: Colors.white,
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     Text(
                       data[index]['title'],
                       style: const TextStyle(

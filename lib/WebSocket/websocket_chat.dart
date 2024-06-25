@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:web_socket_channel/io.dart';
 import 'package:flutter_chat_ui/flutter_chat_ui.dart' as chat_ui;
@@ -7,21 +6,20 @@ import 'package:flutter_chat_types/flutter_chat_types.dart' as types;
 import 'package:uuid/uuid.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:flutter_tool/PaymentsTools/phonePay.dart';
 
-
-class WebSocketChatScreen extends StatefulWidget {
-  const WebSocketChatScreen({super.key});
+class WebSocketChat extends StatefulWidget {
+  const WebSocketChat({super.key});
 
   @override
-  _WebSocketChatScreenState createState() => _WebSocketChatScreenState();
+  _WebSocketChatState createState() => _WebSocketChatState();
 }
 
-class _WebSocketChatScreenState extends State<WebSocketChatScreen> {
+class _WebSocketChatState extends State<WebSocketChat> {
   final TextEditingController _controller = TextEditingController();
   IOWebSocketChannel? _channel;
   final List<types.Message> _messages = [];
   final _user = const types.User(id: 'user', firstName: 'You');
+  final _otherUser = const types.User(id: 'other', firstName: 'Other');
   bool _isConnecting = false;
 
   @override
@@ -36,16 +34,16 @@ class _WebSocketChatScreenState extends State<WebSocketChatScreen> {
     });
 
     try {
-      // _channel = IOWebSocketChannel.connect('wss://echo.websocket.events');
-      _channel = IOWebSocketChannel.connect('wss://socket.zilaghaziabad.com:6001');
+      _channel = IOWebSocketChannel.connect(
+          'wss://connect.websocket.in/v3/1?api_key=B6rn1zIi1xpwxRGDaEOxbMSW1GEKswQilAUvXa09&notify_self');
 
       _channel!.stream.listen(
-            (message) {
+        (message) {
           setState(() {
             final textMessage = types.TextMessage(
-              author: _user,
+              author: _otherUser,
               createdAt: DateTime.now().millisecondsSinceEpoch,
-              id: Uuid().v4(),
+              id: const Uuid().v4(),
               text: message,
             );
             _messages.insert(0, textMessage);
@@ -73,7 +71,7 @@ class _WebSocketChatScreenState extends State<WebSocketChatScreen> {
   }
 
   void _retryConnection() {
-    Future.delayed(Duration(seconds: 5), () {
+    Future.delayed(const Duration(seconds: 5), () {
       if (mounted) {
         _connectWebSocket();
       }
@@ -85,7 +83,7 @@ class _WebSocketChatScreenState extends State<WebSocketChatScreen> {
       final textMessage = types.TextMessage(
         author: _user,
         createdAt: DateTime.now().millisecondsSinceEpoch,
-        id: Uuid().v4(),
+        id: const Uuid().v4(),
         text: _controller.text,
       );
 
@@ -107,7 +105,7 @@ class _WebSocketChatScreenState extends State<WebSocketChatScreen> {
       final message = types.FileMessage(
         author: _user,
         createdAt: DateTime.now().millisecondsSinceEpoch,
-        id: Uuid().v4(),
+        id: const Uuid().v4(),
         name: result.files.single.name,
         size: result.files.single.size,
         uri: file.path,
@@ -131,7 +129,7 @@ class _WebSocketChatScreenState extends State<WebSocketChatScreen> {
       final message = types.ImageMessage(
         author: _user,
         createdAt: DateTime.now().millisecondsSinceEpoch,
-        id: Uuid().v4(),
+        id: const Uuid().v4(),
         name: pickedFile.name,
         size: await file.length(),
         uri: file.path,
@@ -158,7 +156,7 @@ class _WebSocketChatScreenState extends State<WebSocketChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chat'),
+        title: const Text('Chat'),
       ),
       body: Column(
         children: <Widget>[
@@ -169,13 +167,18 @@ class _WebSocketChatScreenState extends State<WebSocketChatScreen> {
               user: _user,
               showUserAvatars: true,
               showUserNames: true,
+              customDateHeaderText: (DateTime date) {
+                return "${date.day}-${date.month}-${date.year}";
+              },
               theme: chat_ui.DefaultChatTheme(
                 inputBackgroundColor: Colors.blue.shade50,
                 primaryColor: Colors.blue,
-                userAvatarNameColors: [Colors.orange, Colors.green],
-                //   userBubbleColor: Colors.blue.shade200,
-                //   userTextColor: Colors.white,
+                userAvatarNameColors: const [Colors.orange, Colors.green],
+                //  userBubbleColor: Colors.blue.shade200,
+                //  userTextColor: Colors.white,
                 backgroundColor: Colors.white,
+                receivedMessageBodyTextStyle: const TextStyle(color: Colors.black),
+                sentMessageBodyTextStyle: const TextStyle(color: Colors.white),
               ),
             ),
           ),
@@ -196,23 +199,23 @@ class _WebSocketChatScreenState extends State<WebSocketChatScreen> {
               child: Row(
                 children: <Widget>[
                   IconButton(
-                    icon: Icon(Icons.attach_file, color: Colors.blue),
+                    icon: const Icon(Icons.attach_file, color: Colors.blue),
                     onPressed: _pickFile,
                   ),
                   IconButton(
-                    icon: Icon(Icons.photo, color: Colors.blue),
+                    icon: const Icon(Icons.photo, color: Colors.blue),
                     onPressed: _pickImage,
                   ),
                   Expanded(
                     child: TextField(
                       controller: _controller,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: 'Enter your message',
                       ),
                     ),
                   ),
                   IconButton(
-                    icon: Icon(Icons.send, color: Colors.blue),
+                    icon: const Icon(Icons.send, color: Colors.blue),
                     onPressed: _sendMessage,
                   ),
                 ],
